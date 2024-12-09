@@ -1,0 +1,122 @@
+/* General styling */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+  background: linear-gradient(90deg, #003366,#4facfe);
+  padding: 0.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbar-logo h1 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.active-link {
+  background: #ffffff;
+  color: #4facfe;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+
+/* Styling for the hamburger menu icon */
+.hamburger-icon {
+  display: none;
+  font-size: 1.5rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .filter-bar .filter-dropdown,
+  .filter-bar .date-picker-input {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0 !important; /* Force margin-bottom to 0 */
+    padding-bottom: 0; /* Ensure no padding below */
+    box-sizing: border-box; /* Prevent unexpected spacing issues */
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  .navbar-links.open {
+    display: flex;
+    max-height: 300px; /* Adjust max-height if needed */
+  }
+
+  .hamburger-icon {
+    display: block;
+  }
+
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-logo {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-links {
+    display: flex;
+  }
+
+  .hamburger-icon {
+    display: none;
+  }
+}

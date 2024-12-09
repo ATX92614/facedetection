@@ -1,0 +1,41 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@mui/material": "^5.16.8",
+    "axios": "^0.24.0",
+    "postcss-selector-parser": "^6.0.10",
+    "react": "^18.2.0",
+    "react-contextmenu": "^2.14.0",
+    "react-datepicker": "^7.5.0",
+    "react-dom": "^18.2.0",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-router-dom": "^6.0.2",
+    "react-scripts": "5.0.0",
+    "react-toastify": "^10.0.6",
+    "recharts": "^2.14.1",
+    "socket.io-client": "^4.8.1"
+  },
+  "scripts": {
+    "start": "cross-env PORT=3000 react-scripts start",
+    "build": "react-scripts build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  }
+}

@@ -1,0 +1,136 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #f8f9fa;
+    --text-color: #212529;
+    --error-color: #dc3545;
+    --success-color: #28a745;
+    --card-bg: #ffffff;
+    --card-shadow: rgba(0, 0, 0, 0.15);
+    --transition-duration: 0.3s;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Settings Container */
+  .settings-container {
+    max-width: 600px; /* Same width for form and button */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--card-shadow);
+    transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+  }
+  
+  .settings-container h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+  }
+  
+  /* Form Groups */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    width: 100%; /* Full width inside container */
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    box-sizing: border-box; /* Ensure padding doesn't break layout */
+    appearance: none; /* Reset browser-specific styling */
+    margin: 0; /* Reset browser margins */
+    transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+  }
+  
+  /* Submit Button */
+  .submit-button {
+    width: 100%; /* Same width as inputs */
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px; /* Add spacing between last input and button */
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+  }
+  
+  .submit-button:active {
+    transform: scale(0.98);
+  }
+  
+  /* Success and Error Messages */
+  .success {
+    color: var(--success-color);
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .error {
+    color: var(--error-color);
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  /* Loading Spinner */
+  .loading {
+    text-align: center;
+    font-size: 18px;
+    color: var(--primary-color);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .settings-container {
+      padding: 15px;
+    }
+  
+    .submit-button {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .form-group input,
+    .form-group select {
+      font-size: 13px;
+      padding: 8px;
+    }
+  
+    .settings-container h1 {
+      font-size: 1.8rem;
+    }
+  }
+  
