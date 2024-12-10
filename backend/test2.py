@@ -1,55 +1,51 @@
 from config import Config
 import sqlite3
 import os
+from datetime import datetime
 
-def inspect_database():
+def delete_today_entries():
     try:
         # Resolve database path
         database_path = Config.SQLALCHEMY_DATABASE_URI.replace('sqlite:///', '')
+
+        # Adjust the path to point to 'instance/face_recognition.db'
+        script_dir = os.path.dirname(os.path.abspath(__file__))  # Current script directory
+        if os.path.basename(database_path) == 'face_recognition.db':
+            database_path = os.path.join(script_dir, "instance", "face_recognition.db")
+
         absolute_path = os.path.abspath(database_path)
         print(f"Resolved Database Path: {absolute_path}")
 
         # Check if database file exists
-        if not os.path.exists(database_path):
+        if not os.path.exists(absolute_path):
             print(f"Error: Database file does not exist at path: {absolute_path}")
             return
 
         # Connect to the SQLite database
-        conn = sqlite3.connect(database_path)
+        conn = sqlite3.connect(absolute_path)
         cursor = conn.cursor()
         print("Successfully connected to the database.")
 
-        # Get all tables in the database
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-        tables = cursor.fetchall()
+        # Get today's date in the format stored in the database
+        today = datetime.now().date()
 
-        if not tables:
-            print(f"No tables found in the database at path: {absolute_path}")
-            return
+        # SQL query to delete entries with today's timestamp
+        query = """
+        DELETE FROM snapshots
+        WHERE DATE(timestamp) = ?
+        """
+        
+        # Execute the query
+        cursor.execute(query, (today,))
+        rows_deleted = cursor.rowcount
 
-        print("Tables and their details:")
-
-        for table in tables:
-            table_name = table[0]
-            print(f"\nTable: {table_name}")
-
-            # Get columns for the table
-            cursor.execute(f"PRAGMA table_info({table_name});")
-            columns = cursor.fetchall()
-            print("  Columns:")
-            for column in columns:
-                col_id, name, data_type, not_null, default_value, pk = column
-                print(f"    - Name: {name}, Type: {data_type}, Not Null: {bool(not_null)}, Primary Key: {bool(pk)}")
-
-            # Count the number of entries in the table
-            cursor.execute(f"SELECT COUNT(*) FROM {table_name};")
-            count = cursor.fetchone()[0]
-            print(f"  Total Entries: {count}")
-
+        # Commit the changes and close the connection
+        conn.commit()
         conn.close()
 
+        print(f"Deleted {rows_deleted} entries from the blacklist table for today's date: {today}")
     except Exception as e:
         print(f"Error: {e}")
 
 if __name__ == '__main__':
-    inspect_database()
+    delete_today_entries()

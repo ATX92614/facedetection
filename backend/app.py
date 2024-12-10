@@ -47,7 +47,7 @@ def log_event(message):
 YOLOV9_CONFIG = {
     "weights_path": "C:/Bosch/backend/yolov9-c.pt",
     "device": "cuda" if torch.cuda.is_available() else "cpu",
-    "confidence_threshold": 0.5,
+    "confidence_threshold": 0.6,
     "nms_threshold": 0.4,
     "face_class_id": 0,
     "frame_skip_interval": 15,  # Increased to skip more frames
